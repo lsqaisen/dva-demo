@@ -1,0 +1,108 @@
+.sider {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #3F3F3F;
+    width: 64px;
+    height: 100%;
+    z-index: 999;
+    font-size: 16px;
+    .logobox {
+        position: relative;
+        overflow: hidden;
+        float: left;
+        width: 64px;
+        height: 64px;
+        background-color: #3F3F3F;
+        z-index: 1;
+        .logo {
+            position: relative;
+            float: left;
+            padding-left: 64px;
+            height: 100%;
+            width: auto;
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                margin: 16px;
+                width: 32px;
+                height: 32px;
+            }
+            font-size: 18px;
+            font-weight: 500;
+            text-align: left;
+        }
+    }
+    .menu {
+        position: absolute;
+        top: 64px;
+        left: 0;
+        float: left;
+        width: 64px;
+        .menu_item {
+            float: left;
+            width: 64px;
+            height: 40px;
+            z-index: 999;
+            color: #797979;
+            .menu_item_info {
+                // overflow: hidden;
+                display: inline-block;
+                width: 64px;
+                .icon {
+                    float: left;
+                    width: 64px;
+                    height: 40px;
+                    text-align: center;
+                    line-height: 40px;
+                    color: #797979;
+                    font-size: 17px !important;
+                }
+                .text {
+                    display: none;
+                    float: left;
+                    padding-right: 12px;
+                    height: 40px;
+                    line-height: 40px;
+                    color: #797979;
+                    word-break: keep-all;
+                }
+                &:hover {
+                    width: auto;
+                    display: inline-flex;
+                    .icon {
+                        display: inline-table;
+                        background-color: #108DE9;
+                        color: #fff;
+                    }
+                    .text {
+                        display: inline-table;
+                        background-color: #108DE9;
+                        border-top-right-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                        color: #fff;
+                    }
+                }
+            }
+            &.active {
+                .icon {
+                    background-color: #108DE9;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .menu .menu_item {
+        margin: 12px 0;
+    }
+}
+
+@media screen and (max-width: 1281px) {
+    .menu .menu_item {
+        margin: 5px 0;
+    }
+}

@@ -1,0 +1,38 @@
+.sider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 220px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #fff;
+    .menu {
+        margin-top: 12px;
+        width: 200px;
+         :global(.ant-menu-item) {
+            .stack-close-btn {
+                display: none;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+            &:hover {
+                .stack-close-btn {
+                    display: block;
+                    i {
+                        color: #666;
+                    }
+                    &:hover {
+                        i {
+                            color: #108ee9;
+                        }
+                    }
+                }
+            }
+        }
+         :global(.ant-menu-submenu)>:global(.ant-menu) {
+            background-color: #F9F9F9;
+        }
+    }
+}

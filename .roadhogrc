@@ -1,0 +1,48 @@
+{
+  "entry": "src/index.js",
+  "disableCSSModules": false,
+  "publicPath": "/",
+  "theme": {
+    "hui-color": "#F4F4F4",
+    "error-color" : "#f04134",
+    "success-color" : "#00a854",
+    "warning-color" : "#ffbf00",
+    "primary-color": "#108de9",
+    "font-size-caption-sm": "14px",
+    "font-size-base": "14px"
+  },
+  "autoprefixer": null,
+  "proxy": {
+    "/api": {
+      "target": "http://192.168.8.81:30000/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/api" : "" }
+    },   
+    "/ui": {
+      "target": "http://192.168.8.81:30000/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/ui" : "/ui" }
+    }
+  },
+  "extraBabelPlugins": [
+    "transform-runtime",
+    ["import", { "libraryName": "antd", "style": true }]
+  ],
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr"
+      ]
+    }
+  },
+  "dllPlugin": {
+    "exclude": [
+      "babel-runtime"
+    ],
+    "include": [
+      "dva/router",
+      "dva/saga",
+      "dva/fetch"
+    ]
+  }
+}

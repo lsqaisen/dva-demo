@@ -1,0 +1,15 @@
+
+.content {
+  position: absolute;
+  top: 64px;
+  right: 0;
+  left: 64px;
+  bottom: 0;
+  background-color: #F4F4F4;
+  overflow: hidden;
+}
+
+.main {
+  padding: 0 8px;
+  flex: 1 0 auto;
+}
