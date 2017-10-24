@@ -1,20 +1,24 @@
-# dva-demo
+# dva-example-user-dashboard
 
-DEMO for [dva](https://github.com/dvajs/dva) .
+详见[《12 步 30 分钟，完成用户管理的 CURD 应用 (react+dva+antd)》](https://github.com/sorrycc/blog/issues/18)。
 
-## Init
+---
+
+<p align="center">
+  <img src="https://zos.alipayobjects.com/rmsportal/bmkNCEoluwGaeGjYjInf.png" />
+</p>
+
+## Getting Started
+Install dependencies.
 
 ```bash
 $ npm install
 ```
-## Start
-Fist start please run '`npm run build:dll`'
+
+Start server.
 
 ```bash
 $ npm start
 ```
 
-## Build
-```bash
-$ npm run build
-```
+If success, app will be open in your default browser automatically.

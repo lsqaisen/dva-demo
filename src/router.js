@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Switch, Route, Redirect } from 'dva/router';
 import dynamic from 'dva/dynamic';
 import App from './routes/App';
-import StackLayout from './routes/Stack/Layout';
+import Stack from './routes/Stack/';
 
 function RouterConfig({ history, app }) {
   const error = dynamic({
@@ -28,28 +28,34 @@ function RouterConfig({ history, app }) {
       models: () => [require('./models/node/')],
       component: () => require('./routes/Node/'),
     },
+    {
+      path: '/stack',
+      breadcrumbName: '应用管理',
+      models: () => [require('./models/stack/stack'), require('./models/stack/service')],
+      component: () => require('./routes/Stack/'),
+    },
   ];
   return (
     <Router history={history}>
       <App>
         <Switch>
           <Route key="stack" path="/stack" >
-            <StackLayout>
+            <Stack>
               <Switch>
                 <Route exact path="/stack" render={() => (<Redirect push to={`/stack/list`} />)} />
                 <Route exact path="/stack/list" component={dynamic({
                   app,
                   models: () => [require('./models/stack/stack')],
-                  component: () => require('./routes/Stack/StackList'),
+                  component: () => require('./routes/Stack/List'),
                 })} />
-                <Route exact path="/stack/list/:stackname" component={dynamic({
+                <Route exact path="/stack/list/:servicename" component={dynamic({
                   app,
-                  models: () => [require('./models/stack/stack')],
-                  component: () => require('./routes/Stack/Stack'),
+                  models: () => [require('./models/stack/service')],
+                  component: () => require('./routes/Stack/service/'),
                 })} />
                 <Route component={error} />
               </Switch>
-            </StackLayout>
+            </Stack>
           </Route>
           <Route exact path="/dashboard" component={dynamic({
             app,

@@ -8,22 +8,14 @@ export default {
     state: {
         loading: true,
         list: [],
-
-        selectStack: '',
     },
     subscriptions: {
         setup({ history, dispatch }) {
-            dispatch({
-                type: 'updateState',
-                payload: {
-                    selectStack: location.pathname.split('\/')[3] || '',
-                }
-            });
             return history.listen(location => {
-                const pathArr = location.pathname.split('\/');
-                console.log(pathArr)
-                if (pathArr[1] === 'stack' && pathArr[2] === 'list') {
-                    dispatch({ type: 'query', payload: { stackname: pathArr[3] || '' } });
+                dispatch({ type: 'query' });
+                if (location.pathname.indexOf('/stack') != -1) {
+                    let key = history.location.pathname.replace(/\/stack\/(\w+)(\/)*.*/, '$1');
+                    dispatch({ type: 'updateSelectKeys', payload: { selectedKeys: [key] } });
                 }
             });
         },
@@ -37,23 +29,20 @@ export default {
                 }
             })
             const { menudata, profile } = yield select(_ => _.app);
-            const data = payload.stackname ? yield call(stackService.detail, { current: profile.current, name: payload.stackname }) :
-                yield call(stackService.list, { current: profile.current });
-            let list = [], selectStack = payload.stackname || '';
+            console.log(profile)
+            const data = yield call(stackService.list, { current: profile.current })
+            console.log(data, 23423)
+            let list = [];
             if (data.data) {
-                list = payload.stackname ? [data.data] : data.data.stacks;
+                list = data.data.stacks;
             }
             yield put({
                 type: 'updateState',
                 payload: {
                     list,
-                    selectStack,
                     loading: false
                 }
             })
-        },
-        *add({ payload }, { call, select, put }) {
-
         }
     },
     reducers: {
@@ -63,5 +52,11 @@ export default {
                 ...payload,
             }
         },
+        updateSelectKeys(state, { payload: selectedKeys }) {
+            return {
+                ...state,
+                ...selectedKeys,
+            }
+        }
     },
 }

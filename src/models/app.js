@@ -129,7 +129,7 @@ export default {
 					type: 'profileSuccess',
 					payload: {
 						profile: data.data,
-						selectedKeys: pathname.split('\/')
+						selectedKeys: [pathname.replace(/\/.*\/(.*)(\/)*/, '$1')]
 					}
 				});
 				if (pathname === '/login' || pathname === '/') {
