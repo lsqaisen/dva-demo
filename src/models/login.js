@@ -34,7 +34,7 @@ export default {
             const { locationPathname } = yield select(_ => _.app);
             yield put({ type: 'updateState', payload: { loading: true } });
             const data = yield call(loginService.login, payload);
-            if (data.data) {
+            if (!data.error) {
                 yield put({
                     type: 'app/profile',
                     payload: { pathname: '/dashboard' } 

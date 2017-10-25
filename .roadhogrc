@@ -4,6 +4,9 @@
   "publicPath": "/",
   "theme": {
     "hui-color": "#F4F4F4",
+    "error-color" : "#f04134",
+    "success-color" : "#00a854",
+    "warning-color" : "#ffbf00",
     "primary-color": "#108de9",
     "font-size-caption-sm": "14px",
     "font-size-base": "14px"

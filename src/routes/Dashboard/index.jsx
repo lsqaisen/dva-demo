@@ -1,11 +1,11 @@
 import { connect } from 'dva';
 import PropTypes from 'prop-types'
-//antd
 import { Row, Col } from 'antd';
-//
 import { Metric, SysStatus, Plugin } from './comps/';
-//less
 import styles from './index.less';
+
+
+import { Card, Badge, Button, Modal } from 'antd';
 
 const Dashboard = ({ metric, dashboard }) => {
     const { plugins} = dashboard;
@@ -19,8 +19,19 @@ const Dashboard = ({ metric, dashboard }) => {
             </Row>
             <Row gutter={24} className={styles.gutter_row}>
                 <Col span="24"><Plugin plugins={plugins}/></Col>
-            </Row>
-            dashboard
+            </Row>    
+                    <Modal
+            key="2323"
+            maskClosable={false}
+            wrapClassName="vertical-center-modal"
+            title="添加应用"
+            visible={true}
+            confirmLoading={false}
+            onOk={() => { }}
+            onCancel={() => { }}
+        >
+            {Math.random()}
+        </Modal>
         </div >
     )
 }

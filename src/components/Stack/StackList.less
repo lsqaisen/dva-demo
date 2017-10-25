@@ -1,29 +1,9 @@
 .stacklist {
-  .stack {
-      margin-bottom: 24px;
-      .service {
-          cursor: pointer;
-          width: 25%;
-          .dotColor(@color) {
-               :global(.ant-badge-status-dot) {
-                  background-color: @color;
-                  &:after {
-                      border-color: @color;
-                  }
-              }
-          }
-          .info {
-              .dotColor(@primary-color);
-          }
-          .warning {
-              .dotColor(@warning-color);
-          }
-          .success {
-              .dotColor(@success-color);
-          }
-          .error {
-              .dotColor(@error-color);
-          }
-      }
-  }
+    .stack {
+        margin-bottom: 24px;
+        .service {
+            cursor: pointer;
+            width: 25%;
+        }
+    }
 }

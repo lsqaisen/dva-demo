@@ -22,7 +22,7 @@ export default {
         *plugin({ payload }, { call, select, put }) {
             const data = yield call(dashboardService.plugin);
             console.log(data, 3223)
-            if (data.data) {
+            if (!data.error) {
                yield put({
                     type: 'updateState',
                     payload: {

@@ -116,7 +116,7 @@ export default {
 					}),
 				}
 			});
-			if (!data.data) {
+			if (!!data.error) {
 				if (pathname != '/login') {
 					yield put(routerRedux.push({
 						pathname: '/login',
@@ -129,7 +129,7 @@ export default {
 					type: 'profileSuccess',
 					payload: {
 						profile: data.data,
-						selectedKeys: [pathname.replace(/\/.*\/(.*)(\/)*/, '$1')]
+						selectedKeys: pathname.split('\/')
 					}
 				});
 				if (pathname === '/login' || pathname === '/') {
@@ -141,7 +141,7 @@ export default {
 		},
 		*plugin({ payload }, { call, select, put }) {
 			const data = yield call(appService.plugin);
-			if (!!data.data) {
+			if (!data.error) {
 				yield put({
 					type: 'pluginSuccess',
 					payload: {
