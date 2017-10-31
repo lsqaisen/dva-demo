@@ -1,4 +1,5 @@
-import * as stackService from '../../services/stack';
+import * as stackService from '../../services/stack'
+import { message } from 'antd'
 
 export default {
     namespace: 'stacklist',
@@ -6,8 +7,8 @@ export default {
         loading: true,
         list: [],
 
-        selectStack: '',
-        selectService: '',
+        addstack_visible: false,
+        addstack_confirmLoading: false,
     },
     subscriptions: {
         setup({ history, dispatch }) {
@@ -40,8 +41,27 @@ export default {
                 }
             })
         },
-        *add({ payload }, { call, select, put }) {
-
+        *addstack({ payload }, { call, select, put }) {
+            yield put({
+                type: 'updateState',
+                payload: {
+                    addstack_confirmLoading: true
+                }
+            })
+            const { profile: { current } } = yield select(_ => _.app);
+            const data = yield call(stackService.addstack, { ...payload.data, namespace: current });
+            if (!data.error) {
+                message.success('应用创建成功！');
+                yield put({ type: 'query' });
+                yield put({
+                    type: 'updateState',
+                    payload: {
+                        addstack_visible: false,
+                        addstack_confirmLoading: false,
+                    }
+                });
+                yield call(payload.resetFields);
+            }
         }
     },
     reducers: {

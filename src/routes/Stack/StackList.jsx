@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { connect } from 'dva';
-import { Card, Badge, Button, Modal } from 'antd';
+import { Card, Badge, Button } from 'antd';
 import { Link } from 'dva/router';
 import { Loading } from '../../components/Loading';
 import { StackList as StackListComps, AddStack } from '../../components/Stack';
@@ -8,34 +8,47 @@ import styles from './StackList.less';
 
 
 const StackList = ({ stacklist, dispatch }) => {
-    console.log(styles.stacks, 323232)
-    const { list, loading } = stacklist;
-    function dotColor(status) {
-        switch (status) {
-            case 'running': return styles.success;
-            default: return styles.warning;
-        }
-        return '';
+    const { list, loading, addstack_visible, addstack_confirmLoading } = stacklist;
+
+    function showAddStackModal() {
+        dispatch({
+            type: 'stacklist/updateState',
+            payload: {
+                addstack_visible: true
+            }
+        })
     }
+    const addstack = {
+        network: [],
+        addstack_visible,
+        addstack_confirmLoading,
+        AddStack: (data, resetFields) => {
+            dispatch({
+                type: 'stacklist/addstack',
+                payload: {
+                    data,
+                    resetFields,
+                },
+            })
+        },
+        cancelAddStack: () => {
+            dispatch({
+                type: 'stacklist/updateState',
+                payload: {
+                    addstack_visible: false
+                }
+            })
+        }
+    }
+
     return (
         <div className={styles.stacks}>
             {loading ? <Loading loading={loading} /> : ''}
             <div className={styles.operate}>
-                <Button type="primary">添加应用</Button>
+                <Button type="primary" onClick={showAddStackModal}>添加应用</Button>
             </div>
             <StackListComps stacklist={stacklist} dispatch={dispatch} />
-            <Modal
-                key="2323"
-                maskClosable={false}
-                wrapClassName="vertical-center-modal"
-                title="添加应用"
-                visible={true}
-                confirmLoading={false}
-                onOk={() => { }}
-                onCancel={() => { }}
-            >
-                {Math.random()}
-            </Modal>
+            <AddStack {...addstack} />
         </div>
     )
 }

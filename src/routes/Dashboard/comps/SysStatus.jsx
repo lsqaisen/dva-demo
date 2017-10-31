@@ -9,6 +9,7 @@ import CountUp from 'react-countup';
 import styles from './SysStatus.less';
 
 const SysStatus = ({ data }) => {
+    console.log(data,123)
     return (
         <Row gutter={24}>
             <Col span="18" >
@@ -24,7 +25,7 @@ const SysStatus = ({ data }) => {
                                     <p className={styles.data}>
                                         <CountUp
                                             start={0}
-                                            end={1231234}
+                                            end={data.nodes}
                                             duration={2.75}
                                             useEasing
                                             useGrouping
@@ -41,7 +42,7 @@ const SysStatus = ({ data }) => {
                                         <p className={styles.data}>
                                             <CountUp
                                                 start={0}
-                                                end={1231234}
+                                                end={data.publicNode}
                                                 duration={2.75}
                                                 useEasing
                                                 useGrouping
@@ -54,7 +55,7 @@ const SysStatus = ({ data }) => {
                                         <p className={styles.data}>
                                             <CountUp
                                                 start={0}
-                                                end={1231234}
+                                                end={data.privateNode}
                                                 duration={2.75}
                                                 useEasing
                                                 useGrouping
@@ -67,7 +68,7 @@ const SysStatus = ({ data }) => {
                                         <p className={styles.data}>
                                             <CountUp
                                                 start={0}
-                                                end={1231234}
+                                                end={data.scheduleNode}
                                                 duration={2.75}
                                                 useEasing
                                                 useGrouping
@@ -93,7 +94,7 @@ const SysStatus = ({ data }) => {
                                         <p className={styles.data}>
                                             <CountUp
                                                 start={0}
-                                                end={123}
+                                                end={data.appsRunning}
                                                 duration={2.75}
                                                 useEasing
                                                 useGrouping
@@ -102,11 +103,11 @@ const SysStatus = ({ data }) => {
                                         </p>
                                     </Row>
                                     <Row>
-                                        <p className={styles.name}>运行中的服务</p>
+                                        <p className={styles.name}>已停止的服务</p>
                                         <p className={styles.data}>
                                             <CountUp
                                                 start={0}
-                                                end={1231}
+                                                end={data.appsNotRunning}
                                                 duration={2.75}
                                                 useEasing
                                                 useGrouping
@@ -126,11 +127,11 @@ const SysStatus = ({ data }) => {
                                 </div>
                                 <div className={styles.info}>
                                     <Row>
-                                        <p className={styles.name}>运行中的服务</p>
+                                        <p className={styles.name}>运行中的副本</p>
                                         <p className={styles.data}>
                                             <CountUp
                                                 start={0}
-                                                end={1234}
+                                                end={data.podRunning}
                                                 duration={2.75}
                                                 useEasing
                                                 useGrouping
@@ -139,11 +140,11 @@ const SysStatus = ({ data }) => {
                                         </p>
                                     </Row>
                                     <Row>
-                                        <p className={styles.name}>运行中的服务</p>
+                                        <p className={styles.name}>已停止的副本</p>
                                         <p className={styles.data}>
                                             <CountUp
                                                 start={0}
-                                                end={234}
+                                                end={data.podNotRuning}
                                                 duration={2.75}
                                                 useEasing
                                                 useGrouping

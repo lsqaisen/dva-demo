@@ -6,16 +6,8 @@ export default {
     state: {
     },
     subscriptions: {
-        setup({ history, dispatch }) {
-            history.listen(location => {
-                dispatch({ type: 'query', payload: {} });
-            });
-        },
     },
     effects: {
-        *query({ payload }, { call, select, put }) {
-
-        }
     },
     reducers: {
     },
